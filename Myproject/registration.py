@@ -19,6 +19,7 @@ class Registration:
         self.sex_user = Entry(self.root)
         self.choice = tkinter.ttk.Combobox(self.root)
         self.choice['values'] = ('Мужской', 'Женский')
+        self.flg = False
 
     def draw_widgest(self):
         color = '#f3f76a'
@@ -34,11 +35,13 @@ class Registration:
         Button(self.root, text='Сохранить', justify=LEFT, bg='#fcca72', command=self.sq_reg).grid(row=4, column=0,
                                                                                                   sticky=W + S, pady=10,
                                                                                                   padx=10)
-        Button(self.root, text='Выход', justify=RIGHT, bg='#fcca72', command=self.root.destroy).grid(row=4, column=3,
+        Button(self.root, text='Выход', justify=RIGHT, bg='#fcca72', command=self.quit).grid(row=4, column=3,
                                                                                                      sticky=W + S,
                                                                                                      pady=10, padx=10)
         self.focus()
-
+    def quit(self):
+        self.root.destroy()
+        self.flg = True
     def sq_reg(self):
         login = self.login_user.get()
         password = self.password_user.get()
@@ -55,6 +58,8 @@ class Registration:
             ac = bd.run_reg()
             if ac is True:
                 mb.showinfo('Регистрация','Вы успешно зарегистрировались!')
+                self.flg = True
+                return self.flg
             elif ac == 2:
                 mb.showwarning('Ошибка', 'Пользователь с таким именем уже существует')
             elif ac == False:
@@ -62,6 +67,8 @@ class Registration:
 
     def run(self):
         self.draw_widgest()
+        if self.flg:
+            return self.flg
         self.root.mainloop()
 
     def focus(self):
