@@ -2,7 +2,7 @@ import tkinter.messagebox
 from tkinter import *
 import enter
 from registration import Registration
-
+import main_menu
 
 class Window:
     def __init__(self, width, height, title='Главное меню', rezizable=(False, False)):
@@ -13,14 +13,15 @@ class Window:
         self.root.iconbitmap('ico.ico')
         self.root.configure(bg='#f3f76a')
         self.status = None
+
     def run(self):
         self.draw_widgets()
         self.root.mainloop()
 
     def draw_widgets(self):
         if self.status != None:
-            Label(self.root,text=self.status,font=16,bg='#fcca72').pack(pady=20)
-            Button(self.root,text='Вход в программу',width=20, height=2, bg='#fcca72').pack(pady=20)
+            Label(self.root, text=self.status, font=16, bg='#fcca72').pack(pady=20)
+            Button(self.root, text='Вход в программу', width=20, height=2,command=self.main_programm, bg='#fcca72').pack(pady=20)
             Button(self.root, text='Выход', width=20, height=2, command=self.tkquit, bg='#fcca72').pack(pady=20)
         else:
             Button(self.root, text='Регистрация', width=20, height=2, command=self.reg, bg='#fcca72').pack(pady=20)
@@ -34,22 +35,26 @@ class Window:
         if flg:
             self.root.deiconify()
 
+    def main_programm(self):
+        self.root.withdraw()
+        start =main_menu.Window(self.root)
+        flg = start.run(self.status)
+        if flg:
+            self.root.deiconify()
 
     def enter(self):
         self.root.withdraw()
         start = enter.Enter(self.root)
-        self.status,flg = start.run()
+        self.status, flg = start.run()
         if flg == 'Выход':
             self.root.deiconify()
         elif self.status is not None:
             self.root.deiconify()
         name = self.status
         self.root.destroy()
-        self.__init__(width=300,height=250)
+        self.__init__(width=300, height=250)
         self.status = name
         self.run()
-
-
 
     def tkquit(self):
         ch = tkinter.messagebox.askyesno('Выход', 'Вы хотите выйти?')
