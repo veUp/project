@@ -1,22 +1,22 @@
 from tkinter import *
-
+from tkinter import messagebox as mb
 class Window:
     def __init__(self,parent):
         self.root = Toplevel(parent)
         self.root.geometry('300x300+600+300')
         self.root.iconbitmap('ico.ico')
         self.root.configure(bg='#f3f76a')
-        self.add_mass = Entry(self.root)
-        self.show_history = Entry(self.root)
+        # self.add_mass = Entry(self.root)
+        # self.show_history = Entry(self.root)
         # self.exit = Entry(self.root)
         self.flg_exit = False
 
 
 
     def draw_widgest(self):
-        Button(self.root, text='Запись веса', justify=CENTER, bg='#fcca72', command=self.add_mass).grid(row=0, column=1, sticky=W + S,pady=10, padx=10)
-        Button(self.root, text='Показать историю', justify=CENTER, bg='#fcca72', command=self.show_history).grid(row=0, column=1, sticky=W + S,pady=10, padx=10)
-        Button(self.root, text='Выход в главное меню', justify=CENTER, bg='#fcca72', command=self.exit).grid(row=0, column=1, sticky=W + S,pady=10, padx=10)
+        Button(self.root, text='Запись веса', justify=CENTER, bg='#fcca72', command=self.add_mass).grid(row=0, column=2, sticky=E+W,pady=10, padx=10)
+        Button(self.root, text='Показать историю', justify=CENTER, bg='#fcca72', command=self.show_history).grid(row=1, column=2, sticky=E+W,pady=10, padx=10)
+        Button(self.root, text='Выход в главное меню', justify=CENTER, bg='#fcca72', command=self.exit).grid(row=2, column=2, sticky=E+W,pady=10, padx=10)
 
         self.focus()
     def exit(self):
@@ -24,6 +24,9 @@ class Window:
         self.flg_exit=True
 
     def add_mass(self):
+        mb.showinfo('lol','azaza')
+
+    def show_history(self):
         pass
 
     def run(self,login=None):
