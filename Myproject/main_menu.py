@@ -34,7 +34,7 @@ class Window:
         a = start.show_history()
         if start is not False:
             for x in a:
-                print(x)
+                print(f'Вес - {x[0]}, дата:{x[1]}/{x[2]}/{x[3]}')
         else:
             print('Пусто')
 
