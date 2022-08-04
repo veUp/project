@@ -7,6 +7,7 @@ class Window_add:
     def __init__(self,parent):
         self.root = Toplevel(parent)
         self.root.title('Запись веса')
+        self.root.geometry('300x100+600+300')
         self.root.iconbitmap('ico.ico')
         self.root.configure(bg='#f3f76a')
         self.flg_exit = False
@@ -44,3 +45,6 @@ class Window_add:
 
         start = account.Mass_user(self.login,mass,self.time)
         start.add_mass()
+        mb.showinfo('Уведомление','Запись записана!')
+        self.root.destroy()
+        self.flg_exit=True

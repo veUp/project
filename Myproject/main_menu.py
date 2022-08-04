@@ -23,7 +23,10 @@ class Window:
 
     def add_mass(self):
         start = add_func.Window_add(self.root)
-        start.run(self.login)
+        self.root.withdraw()
+        i = start.run(self.login)
+        if i:
+            self.root.deiconify()
 
     def show_history(self):
         pass
