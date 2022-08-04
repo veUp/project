@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox as mb
+import account
 import add_func
 class Window:
     def __init__(self,parent):
@@ -29,7 +30,13 @@ class Window:
             self.root.deiconify()
 
     def show_history(self):
-        pass
+        start = account.Mass_user(self.login)
+        a = start.show_history()
+        if start is not False:
+            for x in a:
+                print(x)
+        else:
+            print('Пусто')
 
     def run(self,login=None):
         self.login = login

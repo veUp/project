@@ -56,10 +56,11 @@ class Data_user:
 class Mass_user:
     def __init__(self,login=None,mass=None,time=None):
         self.login = login
-        self.mass = mass
-        self.time_year = time[0]
-        self.time_mon = time[1]
-        self.time_day = time[2]
+        if mass is not None and time is not None:
+            self.mass = mass
+            self.time_year = time[2]
+            self.time_mon = time[1]
+            self.time_day = time[0]
         i = path.isfile('data.db')
         if i:
             self.con = sq.connect('data.db')
@@ -92,7 +93,7 @@ class Mass_user:
             # self.cur.execute("""SELECT user FROM mass_user WHERE user = ?""",self.login)
             # data = self.cur.fetchone()
             data_about_mass = self.cur.execute("""SELECT mass,time_year,time_mon,time_day FROM mass_user WHERE user = ?""",(self.login,))
-            data = data_about_mass.fetchmany()
+            data = data_about_mass.fetchall()
             self.con.close()
             if len(data)>0:
                 return data
