@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox as mb
+import add_func
 class Window:
     def __init__(self,parent):
         self.root = Toplevel(parent)
@@ -21,7 +22,8 @@ class Window:
         self.flg_exit=True
 
     def add_mass(self):
-        mb.showinfo('lol','azaza')
+        start = add_func.Window_add(self.root)
+        start.run(self.login)
 
     def show_history(self):
         pass

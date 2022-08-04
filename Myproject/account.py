@@ -52,3 +52,53 @@ class Data_user:
 
     def run_reg(self):
         return self.user_creat()
+
+class Mass_user:
+    def __init__(self,login=None,mass=None,time=None):
+        self.login = login
+        self.mass = mass
+        self.time_year = time[0]
+        self.time_mon = time[1]
+        self.time_day = time[2]
+        i = path.isfile('data.db')
+        if i:
+            self.con = sq.connect('data.db')
+            self.cur = self.con.cursor()
+            self.cur.execute("""CREATE TABLE IF NOT EXISTS mass_user(
+            user TEXT,
+            mass REAL,
+            time_year TEXT,
+            time_mon TEXT,
+            time_day TEXT
+            )
+            """)
+        else:
+            open('data.db', 'w').close()
+            self.__init__(login, mass, time)
+
+    def add_mass(self):
+        try:
+            self.cur.execute("""INSERT INTO mass_user VALUES(?,?,?,?,?)""",(self.login,self.mass,self.time_year,
+                                                                            self.time_mon,self.time_day,))
+            self.con.commit()
+            self.con.close()
+        except:
+            mb.showwarning('Ошибка','Ошибка в блоке сохрания')
+        finally:
+            self.con.close()
+
+    def show_history(self):
+        try:
+            # self.cur.execute("""SELECT user FROM mass_user WHERE user = ?""",self.login)
+            # data = self.cur.fetchone()
+            data_about_mass = self.cur.execute("""SELECT mass,time_year,time_mon,time_day FROM mass_user WHERE user = ?""",(self.login,))
+            data = data_about_mass.fetchmany()
+            self.con.close()
+            if len(data)>0:
+                return data
+            else:
+                return False
+        except:
+            mb.showerror('Ошибка','Ошибка в блоке просмотра')
+        finally:
+            self.con.close()
