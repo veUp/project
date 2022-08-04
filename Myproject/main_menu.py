@@ -14,9 +14,9 @@ class Window:
 
 
     def draw_widgest(self):
-        Button(self.root, text='Запись веса', justify=CENTER, bg='#fcca72', command=self.add_mass).grid(row=0, column=2, sticky=E+W,pady=10, padx=10)
-        Button(self.root, text='Показать историю', justify=CENTER, bg='#fcca72', command=self.show_history).grid(row=1, column=2, sticky=E+W,pady=10, padx=10)
-        Button(self.root, text='Выход в главное меню', justify=CENTER, bg='#fcca72', command=self.exit).grid(row=2, column=2, sticky=E+W,pady=10, padx=10)
+        Button(self.root, text='Запись веса', justify=CENTER, bg='#fcca72', command=self.add_mass,font=16).pack(pady=20)
+        Button(self.root, text='Показать историю', justify=CENTER, bg='#fcca72', command=self.show_history,font=16).pack(pady=20)
+        Button(self.root, text='Выход в главное меню', justify=CENTER, bg='#fcca72', command=self.exit,font=16).pack(pady=20)
 
         self.focus()
     def exit(self):
