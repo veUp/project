@@ -6,9 +6,6 @@ class Window:
         self.root.geometry('300x300+600+300')
         self.root.iconbitmap('ico.ico')
         self.root.configure(bg='#f3f76a')
-        # self.add_mass = Entry(self.root)
-        # self.show_history = Entry(self.root)
-        # self.exit = Entry(self.root)
         self.flg_exit = False
 
 
@@ -17,7 +14,7 @@ class Window:
         Button(self.root, text='Запись веса', justify=CENTER, bg='#fcca72', command=self.add_mass,font=16).pack(pady=20)
         Button(self.root, text='Показать историю', justify=CENTER, bg='#fcca72', command=self.show_history,font=16).pack(pady=20)
         Button(self.root, text='Выход в главное меню', justify=CENTER, bg='#fcca72', command=self.exit,font=16).pack(pady=20)
-
+        self.root.protocol("WM_DELETE_WINDOW",self.exit)
         self.focus()
     def exit(self):
         self.root.destroy()

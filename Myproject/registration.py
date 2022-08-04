@@ -38,6 +38,7 @@ class Registration:
         Button(self.root, text='Выход', justify=RIGHT, bg='#fcca72', command=self.quit).grid(row=4, column=3,
                                                                                                      sticky=W + S,
                                                                                                      pady=10, padx=10)
+        self.root.protocol("WM_DELETE_WINDOW", self.quit)
         self.focus()
     def quit(self):
         self.root.destroy()

@@ -27,6 +27,8 @@ class Enter:
         Button(self.root, text='Выход', justify=RIGHT, bg='#fcca72', command=self.tk_quit).grid(row=4, column=3,
                                                                                                      sticky=W + S,
                                                                                                     pady=10, padx=10)
+
+        self.root.protocol("WM_DELETE_WINDOW", self.tk_quit)
         self.focus()
 
 
